@@ -11,11 +11,9 @@ const allTags = [...new Set(posts.flatMap(post => post.data.tags || []))].sort()
     <h1 class="font-serif text-4xl font-bold mb-4">Tagit</h1>
     <p class="text-lg mb-12" style="color: var(--color-text-muted)">Kaikki aiheet, joita blogissa käsitellään.</p>
 
-    <div class="tags-grid flex flex-wrap gap-3">
+    <div class="tags-container">
       {allTags.map((tag) => (
-        <span class="text-sm px-4 py-2 rounded-full cursor-default">
-          {tag}
-        </span>
+        <span>{tag}</span>
       ))}
     </div>
 
