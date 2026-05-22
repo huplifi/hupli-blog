@@ -1,0 +1,47 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Sivuiltani löytyy ajatuksia yhteiskunnasta, hyvinvoinnista ja elämästä.' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="fi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title} | Samu Hupli</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-neutral-950 text-neutral-100 font-sans antialiased">
+    <header class="border-b border-neutral-800">
+      <nav class="max-w-3xl mx-auto px-6 py-8 flex justify-between items-center">
+        <a href="/" class="text-xl font-semibold hover:text-neutral-300 transition-colors">
+          Samu Hupli
+        </a>
+        <div class="flex gap-6 text-sm">
+          <a href="/" class="hover:text-neutral-300 transition-colors">Blogi</a>
+          <a href="/about" class="hover:text-neutral-300 transition-colors">Tietoa</a>
+          <a href="/tags" class="hover:text-neutral-300 transition-colors">Tagit</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="max-w-3xl mx-auto px-6 py-12">
+      <slot />
+    </main>
+
+    <footer class="border-t border-neutral-800 mt-24">
+      <div class="max-w-3xl mx-auto px-6 py-8 text-sm text-neutral-500">
+        <p>&copy; {new Date().getFullYear()} Samu Hupli. Kaikki oikeudet pidätetään.</p>
+      </div>
+    </footer>
+  </body>
+</html>

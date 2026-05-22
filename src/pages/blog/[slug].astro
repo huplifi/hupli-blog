@@ -1,0 +1,51 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: post,
+  }));
+}
+
+const post = Astro.props;
+const { Content } = await render(post);
+---
+
+<Layout title={post.data.title} description={post.data.description}>
+  <article>
+    <header class="mb-12">
+      <h1 class="text-4xl font-bold mb-4">{post.data.title}</h1>
+      <div class="flex items-center gap-4 text-sm text-neutral-500">
+        <time datetime={post.data.pubDate.toISOString()}>
+          {post.data.pubDate.toLocaleDateString('fi-FI', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          })}
+        </time>
+        {post.data.tags && post.data.tags.length > 0 && (
+          <div class="flex gap-2">
+            {post.data.tags.map((tag) => (
+              <a href={`/tags/${tag}`} class="px-2 py-1 bg-neutral-800 rounded text-xs hover:bg-neutral-700 transition-colors">
+                {tag}
+              </a>
+            ))}
+          </div>
+        )}
+      </div>
+    </header>
+
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+
+  <div class="mt-16 pt-8 border-t border-neutral-800">
+    <a href="/" class="text-sm text-neutral-400 hover:text-neutral-200 transition-colors">
+      ← Takaisin blogiin
+    </a>
+  </div>
+</Layout>

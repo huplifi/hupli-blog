@@ -1,0 +1,48 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<Layout title="Blogi">
+  <section>
+    <h1 class="text-4xl font-bold mb-2">Blogi</h1>
+    <p class="text-neutral-400 mb-12">Ajatuksia yhteiskunnasta, hyvinvoinnista ja elämästä.</p>
+
+    <div class="space-y-10">
+      {posts.map((post) => (
+        <article class="border-b border-neutral-800 pb-10 last:border-0">
+          <a href={`/blog/${post.slug}/`} class="group">
+            <h2 class="text-2xl font-semibold group-hover:text-neutral-300 transition-colors mb-3">
+              {post.data.title}
+            </h2>
+            <p class="text-neutral-400 mb-4">
+              {post.data.description}
+            </p>
+            <div class="flex items-center gap-4 text-sm text-neutral-500">
+              <time datetime={post.data.pubDate.toISOString()}>
+                {post.data.pubDate.toLocaleDateString('fi-FI', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                })}
+              </time>
+              {post.data.tags && post.data.tags.length > 0 && (
+                <div class="flex gap-2">
+                  {post.data.tags.map((tag) => (
+                    <span class="px-2 py-1 bg-neutral-800 rounded text-xs">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+          </a>
+        </article>
+      ))}
+    </div>
+  </section>
+</Layout>
