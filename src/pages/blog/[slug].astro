@@ -6,46 +6,54 @@ export async function getStaticPaths() {
   const posts = await getCollection('blog');
   return posts.map((post) => ({
     params: { slug: post.id.replace(/\.mdx?$/, '') },
-    props: post,
+    props: { slug: post.id.replace(/\.mdx?$/, '') },
   }));
 }
 
-const post = Astro.props;
-const { Content } = await render(post);
+const { slug } = Astro.props;
+const posts = await getCollection('blog');
+const post = posts.find(p => p.id.replace(/\.mdx?$/, '') === slug);
+if (!post) return Astro.redirect('/404');
+const { Content, headings } = await render(post);
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString('fi-FI', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
 ---
 
 <Layout title={post.data.title} description={post.data.description}>
-  <article>
-    <header class="mb-12">
-      <h1 class="text-4xl font-bold mb-4">{post.data.title}</h1>
-      <div class="flex items-center gap-4 text-sm text-neutral-500">
+  <article class="max-w-2xl mx-auto">
+    <header class="mb-12 pb-8 border-b border-neutral-800">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">{post.data.title}</h1>
+      <div class="flex flex-wrap items-center gap-4 text-sm text-neutral-500">
         <time datetime={post.data.pubDate.toISOString()}>
-          {post.data.pubDate.toLocaleDateString('fi-FI', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-          })}
+          {formatDate(post.data.pubDate)}
         </time>
         {post.data.tags && post.data.tags.length > 0 && (
-          <div class="flex gap-2">
+          <div class="flex gap-2 flex-wrap">
             {post.data.tags.map((tag) => (
-              <a href={`/tags/${tag}`} class="px-2 py-1 bg-neutral-800 rounded text-xs hover:bg-neutral-700 transition-colors">
+              <span class="px-3 py-1 bg-neutral-800 rounded-full text-xs">
                 {tag}
-              </a>
+              </span>
             ))}
           </div>
         )}
       </div>
     </header>
 
-    <div class="prose">
+    <div class="prose prose-lg">
       <Content />
     </div>
-  </article>
 
-  <div class="mt-16 pt-8 border-t border-neutral-800">
-    <a href="/" class="text-sm text-neutral-400 hover:text-neutral-200 transition-colors">
-      ← Takaisin blogiin
-    </a>
-  </div>
+    <div class="mt-16 pt-8 border-t border-neutral-800">
+      <a href="/" class="inline-flex items-center gap-2 text-neutral-400 hover:text-neutral-200 transition-colors">
+        <span>←</span>
+        <span>Takaisin blogiin</span>
+      </a>
+    </div>
+  </article>
 </Layout>

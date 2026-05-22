@@ -1,6 +1,6 @@
 ---
-import '../styles/global.css';
 import SpeedInsights from '@vercel/speed-insights/astro';
+import '../styles/global.css';
 
 export interface Props {
   title: string;
@@ -21,7 +21,7 @@ const { title, description = 'Sivuiltani löytyy ajatuksia yhteiskunnasta, hyvin
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   </head>
-  <body class="bg-neutral-950 text-neutral-100 font-sans antialiased">
+  <body class="bg-neutral-950 text-neutral-100 antialiased">
     <header class="border-b border-neutral-800">
       <nav class="max-w-3xl mx-auto px-6 py-8 flex justify-between items-center">
         <a href="/" class="text-xl font-semibold hover:text-neutral-300 transition-colors">
@@ -44,6 +44,7 @@ const { title, description = 'Sivuiltani löytyy ajatuksia yhteiskunnasta, hyvin
         <p>&copy; {new Date().getFullYear()} Samu Hupli. Kaikki oikeudet pidätetään.</p>
       </div>
     </footer>
+
     <SpeedInsights />
   </body>
 </html>
