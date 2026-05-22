@@ -4,9 +4,9 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout title="Tietoa" description="Tietoa Samu Huplista ja tästä blogista.">
   <section class="max-w-2xl mx-auto">
-    <h1 class="text-4xl font-bold mb-8">Tietoa</h1>
+    <h1 class="font-serif text-4xl font-bold mb-8">Tietoa</h1>
 
-    <div class="space-y-6 text-neutral-300 leading-relaxed">
+    <div class="space-y-6 leading-relaxed">
       <p>
         Olen Samu Hupli, Sipoo. Kirjoitan ajatuksiani yhteiskunnasta, hyvinvoinnista ja elämästä.
       </p>
@@ -21,16 +21,16 @@ import Layout from '../layouts/Layout.astro';
       </p>
 
       <div class="pt-8">
-        <h2 class="text-xl font-semibold mb-4">Yhteystiedot</h2>
-        <ul class="space-y-2 text-neutral-400">
-          <li>Sähköposti: <a href="mailto:samu@hupli.fi" class="hover:text-neutral-200">samu@hupli.fi</a></li>
-          <li>Instagram: <a href="https://instagram.com/chaosuntold" class="hover:text-neutral-200" target="_blank">@chaosuntold</a></li>
+        <h2 class="font-serif text-xl font-semibold mb-4">Yhteystiedot</h2>
+        <ul class="space-y-2">
+          <li>Sähköposti: <a href="mailto:samu@hupli.fi" class="about-link hover:opacity-80 transition-opacity">samu@hupli.fi</a></li>
+          <li>Instagram: <a href="https://instagram.com/chaosuntold" class="about-link hover:opacity-80 transition-opacity" target="_blank">@chaosuntold</a></li>
         </ul>
       </div>
     </div>
 
-    <div class="mt-16 pt-8 border-t border-neutral-800">
-      <a href="/" class="text-neutral-400 hover:text-neutral-200 transition-colors">
+    <div class="mt-16 pt-8 border-t" style="border-color: var(--color-border)">
+      <a href="/" class="text-sm font-mono hover:opacity-80 transition-opacity">
         ← Takaisin blogiin
       </a>
     </div>

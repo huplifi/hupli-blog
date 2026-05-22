@@ -14,19 +14,19 @@ function getSlug(id: string) {
 <Layout title="Blogi">
   <section>
     <h1 class="font-serif text-5xl font-bold mb-4">Blogi</h1>
-    <p class="text-neutral-400 mb-12 text-lg">Ajatuksia yhteiskunnasta, hyvinvoinnista ja elämästä.</p>
+    <p class="text-lg mb-12" style="color: var(--color-text-muted)">Ajatuksia yhteiskunnasta, hyvinvoinnista ja elämästä.</p>
 
     <div class="space-y-12">
       {posts.map((post) => (
-        <article class="border-b border-neutral-800 pb-12 last:border-0 last:pb-0">
-          <a href={`/blog/${getSlug(post.id)}/`} class="group">
-            <h2 class="font-serif text-3xl font-semibold group-hover:text-neutral-200 transition-colors mb-3">
+        <article class="border-b pb-12 last:border-0 last:pb-0">
+          <a href={`/blog/${getSlug(post.id)}/`} class="group block">
+            <h2 class="font-serif text-3xl font-semibold mb-3 group-hover:opacity-80 transition-opacity">
               {post.data.title}
             </h2>
-            <p class="text-neutral-400 mb-4 leading-relaxed">
+            <p class="mb-4 leading-relaxed">
               {post.data.description}
             </p>
-            <div class="flex items-center gap-4 text-sm font-mono text-neutral-500">
+            <div class="flex items-center gap-4 text-sm font-mono">
               <time datetime={post.data.pubDate.toISOString()}>
                 {post.data.pubDate.toLocaleDateString('fi-FI', {
                   year: 'numeric',
@@ -37,7 +37,7 @@ function getSlug(id: string) {
               {post.data.tags && post.data.tags.length > 0 && (
                 <div class="flex gap-2">
                   {post.data.tags.map((tag) => (
-                    <span class="px-2 py-1 bg-neutral-800 rounded text-xs">
+                    <span class="tag text-xs px-2 py-1 rounded">
                       {tag}
                     </span>
                   ))}

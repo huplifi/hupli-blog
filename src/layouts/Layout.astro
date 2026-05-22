@@ -20,17 +20,33 @@ const { title, description = 'Sivuiltani löytyy ajatuksia yhteiskunnasta, hyvin
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script is:inline>
+      // Theme toggle
+      function getTheme() {
+        return localStorage.getItem('theme') || 'light';
+      }
+      function setTheme(theme) {
+        localStorage.setItem('theme', theme);
+        document.documentElement.classList.toggle('dark', theme === 'dark');
+      }
+      // Apply on load
+      setTheme(getTheme());
+    </script>
   </head>
   <body>
-    <header class="border-b border-neutral-800">
+    <header class="border-b">
       <nav class="max-w-3xl mx-auto px-6 py-8 flex justify-between items-center">
-        <a href="/" class="font-serif text-xl font-semibold hover:text-neutral-200 transition-colors">
+        <a href="/" class="font-serif text-xl font-semibold hover:opacity-80 transition-opacity">
           Samu Hupli
         </a>
-        <div class="flex gap-6 text-sm font-mono">
-          <a href="/" class="hover:text-neutral-200 transition-colors">Blogi</a>
-          <a href="/about" class="hover:text-neutral-200 transition-colors">Tietoa</a>
-          <a href="/tags" class="hover:text-neutral-200 transition-colors">Tagit</a>
+        <div class="flex items-center gap-6 text-sm font-mono">
+          <a href="/" class="hover:opacity-80 transition-opacity">Blogi</a>
+          <a href="/about" class="hover:opacity-80 transition-opacity">Tietoa</a>
+          <a href="/tags" class="hover:opacity-80 transition-opacity">Tagit</a>
+          <button class="theme-toggle" onclick="setTheme(getTheme() === 'dark' ? 'light' : 'dark')">
+            <span class="dark:hidden">☀</span>
+            <span class="hidden dark:inline">☾</span>
+          </button>
         </div>
       </nav>
     </header>
@@ -39,7 +55,7 @@ const { title, description = 'Sivuiltani löytyy ajatuksia yhteiskunnasta, hyvin
       <slot />
     </main>
 
-    <footer class="border-t border-neutral-800 mt-24">
+    <footer class="border-t mt-24">
       <div class="max-w-3xl mx-auto px-6 py-8 text-sm font-mono text-neutral-500">
         <p>&copy; {new Date().getFullYear()} Samu Hupli. Kaikki oikeudet pidätetään.</p>
       </div>
