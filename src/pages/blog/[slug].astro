@@ -28,15 +28,15 @@ function formatDate(date: Date) {
 <Layout title={post.data.title} description={post.data.description}>
   <article class="max-w-2xl mx-auto">
     <header class="mb-12 pb-8 border-b border-neutral-800">
-      <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">{post.data.title}</h1>
-      <div class="flex flex-wrap items-center gap-4 text-sm text-neutral-500">
+      <h1 class="font-serif text-4xl md:text-5xl font-bold mb-6 leading-tight">{post.data.title}</h1>
+      <div class="flex flex-wrap items-center gap-4 text-sm font-mono text-neutral-500">
         <time datetime={post.data.pubDate.toISOString()}>
           {formatDate(post.data.pubDate)}
         </time>
         {post.data.tags && post.data.tags.length > 0 && (
           <div class="flex gap-2 flex-wrap">
             {post.data.tags.map((tag) => (
-              <span class="px-3 py-1 bg-neutral-800 rounded-full text-xs">
+              <span class="px-3 py-1 bg-neutral-800 rounded text-xs">
                 {tag}
               </span>
             ))}
@@ -50,7 +50,7 @@ function formatDate(date: Date) {
     </div>
 
     <div class="mt-16 pt-8 border-t border-neutral-800">
-      <a href="/" class="inline-flex items-center gap-2 text-neutral-400 hover:text-neutral-200 transition-colors">
+      <a href="/" class="inline-flex items-center gap-2 text-neutral-400 hover:text-neutral-200 transition-colors font-mono text-sm">
         <span>←</span>
         <span>Takaisin blogiin</span>
       </a>

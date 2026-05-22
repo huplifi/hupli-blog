@@ -19,18 +19,18 @@ const { title, description = 'Sivuiltani löytyy ajatuksia yhteiskunnasta, hyvin
     <title>{title} | Samu Hupli</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   </head>
-  <body class="bg-neutral-950 text-neutral-100 antialiased">
+  <body>
     <header class="border-b border-neutral-800">
       <nav class="max-w-3xl mx-auto px-6 py-8 flex justify-between items-center">
-        <a href="/" class="text-xl font-semibold hover:text-neutral-300 transition-colors">
+        <a href="/" class="font-serif text-xl font-semibold hover:text-neutral-200 transition-colors">
           Samu Hupli
         </a>
-        <div class="flex gap-6 text-sm">
-          <a href="/" class="hover:text-neutral-300 transition-colors">Blogi</a>
-          <a href="/about" class="hover:text-neutral-300 transition-colors">Tietoa</a>
-          <a href="/tags" class="hover:text-neutral-300 transition-colors">Tagit</a>
+        <div class="flex gap-6 text-sm font-mono">
+          <a href="/" class="hover:text-neutral-200 transition-colors">Blogi</a>
+          <a href="/about" class="hover:text-neutral-200 transition-colors">Tietoa</a>
+          <a href="/tags" class="hover:text-neutral-200 transition-colors">Tagit</a>
         </div>
       </nav>
     </header>
@@ -40,7 +40,7 @@ const { title, description = 'Sivuiltani löytyy ajatuksia yhteiskunnasta, hyvin
     </main>
 
     <footer class="border-t border-neutral-800 mt-24">
-      <div class="max-w-3xl mx-auto px-6 py-8 text-sm text-neutral-500">
+      <div class="max-w-3xl mx-auto px-6 py-8 text-sm font-mono text-neutral-500">
         <p>&copy; {new Date().getFullYear()} Samu Hupli. Kaikki oikeudet pidätetään.</p>
       </div>
     </footer>
